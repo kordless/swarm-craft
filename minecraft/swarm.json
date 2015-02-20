@@ -1,0 +1,16 @@
+
+{
+  "app_name": "minecraft",
+  "services": [
+    {
+      "service_name": "minecraft-service",
+      "components": [
+        {
+          "component_name": "minecraft",
+          "image": "registry.giantswarm.io/$username/minecraft",
+          "ports": ["4200/tcp"]
+        }
+      ]
+    }
+  ]
+}
