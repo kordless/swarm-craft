@@ -7,6 +7,7 @@ RUN unzip ngrok.zip -d /bin && rm -f ngrok.zip
 RUN echo 'inspect_addr: 0.0.0.0:4040' > /.ngrok
 ADD ngrok_discover /bin/ngrok_discover
 RUN chmod +x /bin/ngrok_discover
+COPY ngrok.conf /etc/ngrok.conf
 
 EXPOSE 4040
 

@@ -1,10 +1,14 @@
 FROM ubuntu:14.04
 
 MAINTAINER Kord Campbell <kordless@stackgeek.com>
+RUN echo "foo"
 
 # aptitude updates
 RUN apt-get update -y
-RUN apt-get install -y python-software-properties
+RUN apt-get install -y python3-software-properties
+COPY add-apt-repository.py ./add-apt-repository
+RUN chmod 755 add-apt-repository
+RUN mv add-apt-repository /usr/bin/
 
 # java install
 RUN add-apt-repository -y ppa:webupd8team/java
@@ -23,11 +27,12 @@ RUN wget -q http://scriptcraftjs.org/download/2014-08/20140823/scriptcraft.jar -
 
 # agree to the EULA
 RUN echo "eula=true" > /opt/minecraft/eula.txt
+RUN cp /opt/minecraft/eula.txt ./eula.txt
 
 # clean up
 RUN apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 
-CMD ["java", "-Xms500m", "-Xmx500m", "-jar", "minecraft.jar", "nogui"]
+CMD ["java", "-Xms256m", "-Xmx256m", "-jar", "/opt/minecraft/minecraft.jar", "nogui"]
 
 EXPOSE 25565

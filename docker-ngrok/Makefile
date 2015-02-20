@@ -1,4 +1,4 @@
-PROJECT = ngrok-shell
+PROJECT = ngrok-minecraft
 REGISTRY = registry.giantswarm.io
 USERNAME :=  $(shell swarm user)
 
